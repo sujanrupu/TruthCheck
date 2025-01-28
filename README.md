@@ -28,9 +28,8 @@ The system will incorporate dynamic web scraping and partnerships with fact-chec
 React.js, Tailwind CSS, Flask, Python, JavaScript
 
 ### How to execute locally:
--> Install Node.JS version 18.20.6 (LTS) to avoid any compatibility issue
--> Generate Gemini API Key <br>
--> <br>
+-> Install Node.JS version 18.20.6 (LTS) to avoid any compatibility issue <br>
+-> Generate Gemini API Key and place the key .env file in backend folder <br>
 -> Open terminal <br>
 -> Spilt the terminal <br>
 -> In one part of the terminal go to Backend folder 
