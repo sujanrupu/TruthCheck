@@ -12,8 +12,9 @@ def detect_claim_using_gemini(text):
     Replace this with the correct API URL and method from Gemini API documentation.
     """
     api_url = "https://gemini.googleapis.com/v1/claims:detect"
+    api_key = os.getenv('GOOGLE_GEMINI_API_KEY')
     headers = {
-        "Authorization": "Bearer YOUR_GOOGLE_CLOUD_API_KEY",  # Replace with your actual API key
+        "Authorization": f"Bearer {api_key}",  # Replace with your actual API key
         "Content-Type": "application/json"
     }
     
