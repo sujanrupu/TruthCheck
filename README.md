@@ -3,29 +3,29 @@
 ## Idea: Adaptive Knowledge Graph and Multi-Model AI Framework for Misinformation Detection and Fact-Checking
 
 ### Problem Statement:
-The widespread misinformation on networked platforms poses significant challenges to information integrity, public trust, and societal well-being. Current systems fail to effectively detect and verify misinformation in real time across text, images, videos, and deep fakes, while struggling with linguistic and cultural diversity. Additionally, issues like unreliable data sources, lack of transparency, and privacy concerns hinder their effectiveness. A progressive solution is needed to address misinformation proactively, ensuring accuracy, transparency, and compliance with privacy regulations.
+The sheer volume of misinformation on networked platforms has created serious threats to information integrity, public trust, and ultimately public health and society. Text, images, videos, deep fakes, and a lack of linguistic and sociocultural diversity all contribute to current systems’ inability to detect and verify misinformation effectively in real time. Moreover, the absent transparency, unreliable data sources, and privacy concerns plagued their operation. Misinformation is still a pervasive issue; we need a progressive solution that can proactively combat false information while maintaining accuracy, transparency, and privacy compliance.
 
 ### Video Demonstration: https://www.youtube.com/watch?v=GhO7RPcDxIM
 
 
 ### Methodology:
 ##### Knowledge Graph Construction: 
-The knowledge graph will integrate credible data sources (e.g., Wikidata, Kaggle, scientific journals) through web scraping or APIs to continuously update verified information. Neo4j will be used for storing and querying nodes (e.g., people, events, organizations) and edges (relationships) in real-time.
+Using web scraping or APIs, the knowledge graph is going to link trustworthy data sources (such as Wikidata, Kaggle, scientific journals) into consistent data streams that are going to help keep the verified information up to date. For fast real-time storage and query of nodes (people, events, organizations) and edges (relationships), we will use Neo4j.
 
 ##### Claim Detection: 
-A hybrid ensemble of NLP models (BERT, RoBERTa, T5) will be used to detect and classify claims from social media streams and news articles. Text preprocessing, including tokenization, will clean the data, improving the accuracy and coverage of claim identification.
+Hybrid ensemble NLP approach(BERT, RoBERTa, T5) and subsequent combination into a hybrid architecture for Identifying & classifying Claims from Social media streams and news articles. To make the data clean and, thus, increase the precision and the recall of claims detection, pre-treating the text like tokenization would work.
 
 ##### Semantic Matching and Verification: 
-Named Entity Recognition (NER) will extract entities from claims, generating structured queries for verification using the knowledge graph. Semantic matching techniques, like Sentence-BERT and BiLSTM models, will be employed to verify claims, with aggregated results providing a credibility score based on entity match and source reliability.
+Knowledge Graph Component can be used for feeding claims into our Named Entity Recognition (NER) which can help us extract the entities from the input claims and generates structured queries we can use to verify information with the knowledge graph. Semantic matching techniques, especially, Sentence-BERT and BiLSTM models, will be used to validate the claims, followed by aggregating the results per entity match and source reliability to attain a credibility score.
 
 ##### Feedback to Users: 
-Users will receive results about the truthfulness of claims (true, false, or unverifiable), with explanations derived from explainable AI techniques (e.g., SHAP, LIME) to clarify the model’s decision-making process.
+Indicates of claims (true, false or unverifiable) will be shown to users with explanations using explainable AI techniques (e.g. SHAP, LIME) to help understand the model.
 
 ##### Adaptation and Scalability: 
-The system will incorporate dynamic web scraping and partnerships with fact-checking organizations to update the knowledge graph. Using deep learning models like mBERT, the system will support multiple languages and adapt to different linguistic and cultural contexts, ensuring scalability.
+Dynamic web scraping and partnerships with fact-checking entities will ensure the knowledge graph is updated. The utilization of a multi-generational pre-trained language model such as mBERT ensures that the system will be multi-lingual and adaptable to various linguistic and cultural contexts and patterns, guaranteeing scalability.
 
 ### Technology Used:
-React.js, Tailwind CSS, Flask, Python, JavaScript
+React.js, Tailwind CSS, Flask, Python, JavaScript, GenAI
 
 ### How to execute locally:
 -> Install Node.JS version 18.20.6 (LTS) to avoid any compatibility issue <br>
