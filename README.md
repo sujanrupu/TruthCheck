@@ -44,7 +44,7 @@ pip install -r requirements.txt
 ```
 python run.py
 ```
--> I another part of terminal go to Frontend folder
+-> In another part of terminal go to Frontend folder
 ```
 cd Frontend
 ```
