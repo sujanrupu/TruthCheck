@@ -28,7 +28,7 @@ Dynamic web scraping and partnerships with fact-checking entities will ensure 
 React.js, Tailwind CSS, Flask, Python, JavaScript, GenAI
 
 ### How to execute locally:
--> Install Node.JS version 18.20.6 (LTS) to avoid any compatibility issue <br>
+-> Install Node.JS version 18.20.6 (LTS) to avoid any version incompatibility issue <br>
 -> Generate Gemini API Key and place the key .env file in backend folder <br>
 -> Open terminal <br>
 -> Spilt the terminal <br>
