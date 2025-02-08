@@ -5,7 +5,7 @@
 ### Problem Statement:
 The sheer volume of misinformation on networked platforms has created serious threats to information integrity, public trust, and ultimately public health and society. Text, images, videos, deep fakes, and a lack of linguistic and sociocultural diversity all contribute to current systems’ inability to detect and verify misinformation effectively in real time. Moreover, the absent transparency, unreliable data sources, and privacy concerns plagued their operation. Misinformation is still a pervasive issue; we need a progressive solution that can proactively combat false information while maintaining accuracy, transparency, and privacy compliance.
 
-### Video Demonstration: https://www.youtube.com/watch?v=GhO7RPcDxIM
+### Video Demonstration: https://www.youtube.com/watch?v=l4MtT1WwDuc
 
 
 ### Methodology:
