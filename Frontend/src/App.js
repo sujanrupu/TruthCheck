@@ -1,21 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { jsPDF } from "jspdf";  // Import jsPDF
+import 'jspdf-autotable';  // Import jsPDF AutoTable plugin
 import './loader.css';
 
 function App() {
   const [url, setUrl] = useState("");
   const [text, setText] = useState("");
   const [pdfFile, setPdfFile] = useState(null);
+  const [imageFile, setImageFile] = useState(null);
   const [response, setResponse] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
   const [activeTab, setActiveTab] = useState("text");
-  const [loading, setLoading] = useState(false);  // Add loading state
+  const [loading, setLoading] = useState(false);
+  const [checked, setChecked] = useState(false);
 
   useEffect(() => {
-    document.title = "TruthCheck";  // Set the title dynamically
+    document.title = "TruthCheck";
   }, []);
-
-  const [checked, setChecked] = useState(false); // Track if a check has been performed
 
   const handleTextSubmit = async () => {
     if (!text) {
@@ -53,7 +55,6 @@ function App() {
       setLoading(false);
     }
   };
-
   const handlePdfSubmit = async () => {
     if (!pdfFile) {
       setErrorMessage("Please upload a PDF file in the PDF tab.");
@@ -77,6 +78,38 @@ function App() {
     }
   };
 
+  const handleImageSubmit = async () => {
+    if (!imageFile) {
+      setErrorMessage("Please upload an image in the Image tab.");
+      return;
+    }
+    setErrorMessage("");
+    setLoading(true);
+    setChecked(true);
+    const formData = new FormData();
+    formData.append('image', imageFile);
+
+    try {
+      // Sending the image file to the backend
+      const result = await axios.post('https://misinfo-back.onrender.com/check_image', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' }
+      });
+      setResponse(result.data);
+    } catch (error) {
+      console.error('Error checking image:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Function to download the table as PDF
+  const downloadPDF = () => {
+    const doc = new jsPDF();
+    const table = document.querySelector("table");
+
+    doc.autoTable({ html: table });  // Use autoTable plugin
+    doc.save('report.pdf');
+  };
 
   return (
     <div className="App min-h-screen bg-black flex items-center justify-center p-6 flex-col">
@@ -102,6 +135,12 @@ function App() {
             onClick={() => setActiveTab("pdf")}
           >
             PDF
+          </button>
+          <button
+            className={`px-4 py-2 text-lg font-medium ${activeTab === "image" ? "border-b-2 border-purple-500 text-purple-500" : "text-white"}`}
+            onClick={() => setActiveTab("image")}
+          >
+            Image
           </button>
         </div>
 
@@ -165,6 +204,25 @@ function App() {
           </div>
         )}
 
+        {/* New Image Upload Tab */}
+        {activeTab === "image" && (
+          <div>
+            <h2 className="text-xl font-medium text-white mb-2">Upload Image</h2>
+            <input
+              type="file"
+              className="w-full p-3 bg-[#2C4A63] text-white border border-gray-300 rounded-lg mb-4"
+              accept="image/*"
+              onChange={(e) => setImageFile(e.target.files[0])}
+            />
+            <button
+              onClick={handleImageSubmit}
+              className="w-full bg-purple-500 text-white p-2 rounded-lg hover:bg-purple-600"
+            >
+              Check Image
+            </button>
+          </div>
+        )}
+
         {/* Loading Spinner */}
         {loading && (
           <div className="flex justify-center items-center mt-6">
@@ -172,7 +230,6 @@ function App() {
           </div>
         )}
 
-        {/* Table to display response */}
         {/* Table to display response */}
         {checked && !loading && response && response.length > 0 ? (
           <div className="mt-6">
@@ -209,20 +266,21 @@ function App() {
                 })}
               </tbody>
             </table>
+            {/* Add the download button */}
+            <button onClick={downloadPDF} className="mt-4 w-full bg-green-500 text-white p-2 rounded-lg hover:bg-green-600">
+              Download Report as PDF
+            </button>
           </div>
         ) : (
           checked && !loading && <p className="text-green-500 text-center mt-6">No incorrect information found</p>
         )}
-
       </div>
 
       {/* Footer */}
       <footer className="w-full bg-[#1C3A4A] text-center py-4 mt-6 fixed bottom-0">
         <p className="text-white">Developed by Sujan Ghosh</p>
       </footer>
-
     </div>
-
   );
 }
 
